@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-// --- API Response Types ---
+// API Response Types
 
 export interface CelestialBody {
     repo_name: string;
@@ -60,7 +60,7 @@ export interface UserProfile {
     following: number;
 }
 
-// --- Component Prop Types ---
+// Component Prop Types
 
 export interface GalaxySceneProps {
     username: string;
@@ -119,7 +119,7 @@ export interface ExportButtonProps {
     canvasRef?: React.RefObject<HTMLCanvasElement | null>;
 }
 
-// --- Utility: deterministic hash from a string (for seeding random) ---
+// Utility: deterministic hash from a string (for seeding random)
 export function hashString(str: string): number {
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
@@ -130,7 +130,7 @@ export function hashString(str: string): number {
     return Math.abs(hash);
 }
 
-// --- Utility: seeded pseudo-random number generator ---
+// Utility: seeded pseudo-random number generator
 export function seededRandom(seed: number): () => number {
     let s = seed;
     return () => {

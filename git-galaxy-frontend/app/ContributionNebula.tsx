@@ -49,7 +49,7 @@ export default function ContributionNebula({ username, scaleMultiplier }: Contri
         const color = new THREE.Color();
 
         days.forEach((day, i) => {
-            // Arrange in a nebula-like cloud around the black hole
+            // cloud around the black hole
             const weekIndex = Math.floor(i / 7);
             const dayIndex = i % 7;
             const angle = (weekIndex / 52) * Math.PI * 2;

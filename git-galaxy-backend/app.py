@@ -13,22 +13,22 @@ load_dotenv()
 
 app = Flask(__name__)
 
-# --- Configuration from Environment ---
+# Configuration from Environment
 GITHUB_TOKEN = os.getenv("GITHUB_PAT")
 GITHUB_GRAPHQL_URL = "https://api.github.com/graphql"
 GITHUB_REST_URL = "https://api.github.com"
 PORT = int(os.getenv("PORT", 8000))
 FLASK_DEBUG = os.getenv("FLASK_DEBUG", "true").lower() == "true"
 
-# --- CORS: Restrict origins via env or default to localhost ---
+# CORS: Restrict origins via env or default to localhost
 cors_origins = os.getenv("CORS_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000")
 allowed_origins = [origin.strip() for origin in cors_origins.split(",")]
 CORS(app, origins=allowed_origins)
 
-# --- Rate Limiting ---
+# Rate Limiting
 limiter = Limiter(get_remote_address, app=app, default_limits=["60 per minute"])
 
-# --- Simple In-Memory TTL Cache ---
+# Simple In-Memory TTL Cache
 _cache: dict[str, dict] = {}
 CACHE_TTL = 120  # seconds
 
@@ -43,7 +43,7 @@ def cache_get(key: str):
 def cache_set(key: str, data):
     _cache[key] = {"data": data, "timestamp": time.time()}
 
-# --- Language Color Map ---
+# Language Color Map
 LANGUAGE_COLORS = {
     "Python": "#3572A5",
     "TypeScript": "#3178c6",
@@ -70,20 +70,20 @@ LANGUAGE_COLORS = {
     "Svelte": "#ff3e00",
 }
 
-# --- Input Validation ---
+# Input Validation
 USERNAME_REGEX = re.compile(r"^[a-zA-Z0-9](?:[a-zA-Z0-9\-]{0,37}[a-zA-Z0-9])?$")
 
 def is_valid_username(username: str) -> bool:
     return bool(USERNAME_REGEX.match(username))
 
-# --- GitHub API Headers ---
+# GitHub API Headers
 def get_github_headers():
     return {
         "Authorization": f"Bearer {GITHUB_TOKEN}",
         "Content-Type": "application/json",
     }
 
-# --- GraphQL: Fetch repos with cursor-based pagination ---
+# GraphQL: Fetch repos with cursor-based pagination
 def fetch_all_repos(username: str):
     """Fetches ALL repos using cursor-based pagination (100 per page)."""
     query = """
@@ -185,7 +185,7 @@ def fetch_all_repos(username: str):
 
     return all_repos, None
 
-# --- GraphQL: Fetch contribution calendar ---
+# GraphQL: Fetch contribution calendar
 def fetch_contributions(username: str):
     """Fetches the contribution calendar for the last year."""
     query = """
@@ -255,21 +255,21 @@ def health_check():
 def get_galaxy_data(username):
     """Main galaxy data endpoint with caching, validation, and pagination."""
 
-    # --- Validate token ---
+    # Validate token
     if not GITHUB_TOKEN or GITHUB_TOKEN == "your_github_pat_here":
         return jsonify({"error": "Cosmic Engine Error: GitHub PAT is missing in your .env file!"}), 500
 
-    # --- Validate username ---
+    # Validate username
     if not is_valid_username(username):
         return jsonify({"error": f"Invalid GitHub username: '{username}'. Only alphanumeric characters and hyphens are allowed."}), 400
 
-    # --- Check cache ---
+    # Check cache
     cache_key = f"galaxy:{username.lower()}"
     cached = cache_get(cache_key)
     if cached:
         return jsonify(cached)
 
-    # --- Fetch from GitHub ---
+    # Fetch from GitHub
     repos, error = fetch_all_repos(username)
 
     if error == "USER_NOT_FOUND":
@@ -281,7 +281,7 @@ def get_galaxy_data(username):
     if repos is None:
         return jsonify({"error": "An unexpected error occurred while fetching data."}), 500
 
-    # --- Transform repos into celestial bodies ---
+    # Transforming repos into celestial bodies
     celestial_bodies = []
 
     for repo in repos:
@@ -332,7 +332,7 @@ def get_galaxy_data(username):
         "celestial_bodies": celestial_bodies,
     }
 
-    # --- Cache result ---
+    # Cache result
     cache_set(cache_key, result)
 
     return jsonify(result)
@@ -372,7 +372,7 @@ def get_contributions(username):
     return jsonify(result)
 
 
-# --- GraphQL: Fetch user profile ---
+# GraphQL: Fetch user profile
 def fetch_user_profile(username: str):
     """Fetches user profile information."""
     query = """

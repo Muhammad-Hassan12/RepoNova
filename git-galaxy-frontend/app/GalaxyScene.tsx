@@ -174,8 +174,8 @@ export default function GalaxyScene({ username }: { username: string }) {
                             <div
                                 key={i}
                                 className={`w-2 h-2 rounded-full transition-all duration-300 ${i <= loadingStage
-                                        ? "bg-orange-500 shadow-[0_0_6px_rgba(255,136,0,0.6)]"
-                                        : "bg-white/10"
+                                    ? "bg-orange-500 shadow-[0_0_6px_rgba(255,136,0,0.6)]"
+                                    : "bg-white/10"
                                     }`}
                             />
                         ))}
@@ -355,14 +355,14 @@ export default function GalaxyScene({ username }: { username: string }) {
                 </div>
             )}
 
-            {/* Search/Filter Panel (hidden on mobile to avoid overlap) */}
+            {/* Search/Filter Panel */}
             {bodies.length > 0 && (
                 <div className="hidden sm:block">
                     <SearchFilter bodies={bodies} onFilterChange={handleFilterChange} />
                 </div>
             )}
 
-            {/* Rate Limit Dashboard (hidden on mobile) */}
+            {/* Rate Limit Dashboard */}
             <div className="hidden sm:block">
                 <RateLimitDashboard apiUrl={API_URL} />
             </div>

@@ -10,7 +10,6 @@ function colorToFrequency(color: string): number {
     const r = parseInt(hex.substring(0, 2), 16);
     const g = parseInt(hex.substring(2, 4), 16);
     const b = parseInt(hex.substring(4, 6), 16);
-    // Map to a frequency between 80 Hz (deep bass) and 600 Hz (mid tone)
     const avg = (r + g + b) / 3;
     return 80 + (avg / 255) * 520;
 }
@@ -48,10 +47,10 @@ export default function SoundEngine({ enabled, focusedBody }: SoundEngineProps) 
         osc.start();
         ambientRef.current = osc;
 
-        // Add a second detuned oscillator for depth
+        // second detuned oscillator for depth
         const osc2 = ctx.createOscillator();
         osc2.type = "sine";
-        osc2.frequency.value = 55.5; // Slightly detuned for a "beating" effect
+        osc2.frequency.value = 55.5;
         const gain2 = ctx.createGain();
         gain2.gain.value = 0.02;
         osc2.connect(gain2);
