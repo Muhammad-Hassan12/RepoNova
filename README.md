@@ -33,13 +33,13 @@ GitGalaxy doesn't just display data; it translates abstract metrics into gorgeou
 
 ---
 
-## 👨‍💻 Lead Architect And Ownership
+## 👨‍💻 Lead Architect and Ownership
 ### Architect:
 **Syed Muhammad Hassan** *AI Developer/Engineer & Systems Engineer* 
 * [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Muhammad-Hassan12)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/syed-muhammad-hassan-aa112928b)
 
-### professional Assit and Ownership:
+### Assit and Ownership:
 **AgenticEra Systems**
 * [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/AgenticEra-Systems)
 
