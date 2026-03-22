@@ -82,3 +82,31 @@ echo "CORS_ORIGINS=http://localhost:3000" >> .env
 
 # Ignite the cosmic engine
 python app.py
+```
+The API will be available at *http://localhost:8000*
+
+### 2. Frontend Setup (Next.js)
+The frontend consumes the API and renders the WebGL scenes.
+
+```bash
+cd git-galaxy-frontend
+
+# Install dependencies
+npm install
+
+# Connect to local backend
+echo "NEXT_PUBLIC_API_URL=http://localhost:8000" > .env.local
+
+# Launch the visualizer
+npm run dev
+```
+The app will be available at *http://localhost:3000*. The default profile loaded is *torvalds*.
+
+## ⌨️ Controls & Navigation
+
+* Left Click & Drag: Rotate the galaxy viewport.
+* Scroll Wheel: Zoom in and out of the cosmos.
+* Targeting Mode: Click on any star to lock the camera and open the Star Info Panel.
+* **[R]** Key: Warp to a random star system.
+* **[ESC]** Key: Disengage the targeting computer and return to the galactic core.
+* **[?]** Key: Open the keyboard shortcuts overlay.
