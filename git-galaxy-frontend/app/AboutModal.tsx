@@ -55,35 +55,62 @@ export default function AboutModal() {
                             {/* Creator */}
                             <div>
                                 <span className="text-gray-500 text-xs uppercase tracking-widest font-mono">Created By</span>
-                                <div className="mt-2 flex flex-col sm:flex-row sm:items-center justify-between bg-white/5 border border-white/5 rounded-xl p-3 hover:bg-white/10 transition-colors gap-3 sm:gap-0">
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-yellow-400 flex items-center justify-center text-black font-bold text-xl shadow-[0_0_15px_rgba(255,136,0,0.4)]">
-                                            M
+                                <div className="mt-2 space-y-3">
+                                    {/* Developer 1 */}
+                                    <div className="flex flex-col sm:flex-row sm:items-center justify-between bg-white/5 border border-white/5 rounded-xl p-3 hover:bg-white/10 transition-colors gap-3 sm:gap-0">
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-yellow-400 flex items-center justify-center text-black font-bold text-xl shadow-[0_0_15px_rgba(255,136,0,0.4)]">
+                                                A
+                                            </div>
+                                            <div>
+                                                <p className="text-white font-bold text-sm">AgenticEra Systems</p>
+                                                <p className="text-orange-400 text-xs font-mono mt-0.5">Company</p>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <p className="text-white font-bold text-sm">S.M Hassan</p>
-                                            <p className="text-orange-400 text-xs font-mono mt-0.5">Co-Founder of AgenticEra Systems</p>
+                                        <div className="flex items-center gap-2">
+                                            <a
+                                                href="https://www.linkedin.com/company/AgenticEra-Systems"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-gray-400 hover:text-[#0a66c2] transition-colors p-2 bg-black/40 rounded-lg border border-white/10 hover:border-white/30"
+                                                title="LinkedIn"
+                                            >
+                                                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                            </a>
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        <a
-                                            href="https://github.com/Muhammad-Hassan12"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-gray-400 hover:text-white transition-colors p-2 bg-black/40 rounded-lg border border-white/10 hover:border-white/30"
-                                            title="GitHub"
-                                        >
-                                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                                        </a>
-                                        <a
-                                            href="https://www.linkedin.com/in/syed-muhammad-hassan-aa112928b/"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-gray-400 hover:text-[#0a66c2] transition-colors p-2 bg-black/40 rounded-lg border border-white/10 hover:border-white/30"
-                                            title="LinkedIn"
-                                        >
-                                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                                        </a>
+
+                                    {/* Developer 2 */}
+                                    <div className="flex flex-col sm:flex-row sm:items-center justify-between bg-white/5 border border-white/5 rounded-xl p-3 hover:bg-white/10 transition-colors gap-3 sm:gap-0">
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-black font-bold text-xl shadow-[0_0_15px_rgba(6,182,212,0.4)]">
+                                                <img src="https://github.com/Muhammad-Hassan12.png" alt="S.M Hassan" className="w-10 h-10 rounded-full shadow-[0_0_15px_rgba(255,136,0,0.4)] border border-orange-500/50" />
+                                            </div>
+                                            <div>
+                                                <p className="text-white font-bold text-sm">Syed Muhammad Hassan</p>
+                                                <p className="text-cyan-400 text-xs font-mono mt-0.5">AI Engineer & Co-Founder of AgenticEra Systems</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <a
+                                                href="https://github.com/Muhammad-Hassan12"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-gray-400 hover:text-white transition-colors p-2 bg-black/40 rounded-lg border border-white/10 hover:border-white/30"
+                                                title="GitHub"
+                                            >
+                                                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                            </a>
+                                            <a
+                                                href="https://www.linkedin.com/in/syed-muhammad-hassan-aa112928b/"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-gray-400 hover:text-[#0a66c2] transition-colors p-2 bg-black/40 rounded-lg border border-white/10 hover:border-white/30"
+                                                title="LinkedIn"
+                                            >
+                                                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -135,7 +162,7 @@ export default function AboutModal() {
                         {/* Footer */}
                         <div className="p-4 border-t border-white/10 flex justify-between items-center">
                             <a
-                                href="https://github.com"
+                                href="https://github.com/Muhammad-Hassan12/GitGalaxy"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-gray-600 hover:text-gray-400 text-xs font-mono transition-colors"
