@@ -1,7 +1,7 @@
 <div align="center">
   <h1>🌌 GitGalaxy</h1>
   <p><b>A high-performance, 3D interactive cosmic visualization of your GitHub universe.</b></p>
-  <p><i>Architected by AgenticEra Systems</i></p>
+  <p><i>Architected by Syed Muhammad Hassan | Built by AgenticEra Systems</i></p>
 </div>
 
 <br />
@@ -30,6 +30,18 @@ GitGalaxy doesn't just display data; it translates abstract metrics into gorgeou
 * **Contribution Nebulas:** Your 365-day contribution calendar shapes dynamic space nebulas in the background. Denser regions represent highly active coding streaks.
 * **Procedural Space Audio:** An ambient Web Audio API sound engine generates generative drone tones. When locking onto a star, its language hex color is mathematically converted into a specific audio frequency.
 * **Gravitational Lanes:** Faint orbital rings visually connect repositories that share the same primary programming language.
+
+---
+
+## 👨‍💻 Lead Architect And Ownership
+### Architect:
+**Syed Muhammad Hassan** *AI Developer/Engineer & Systems Engineer* 
+* [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Muhammad-Hassan12)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/syed-muhammad-hassan-aa112928b)
+
+### professional Assit and Ownership:
+**AgenticEra Systems**
+* [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/AgenticEra-Systems)
 
 ---
 
