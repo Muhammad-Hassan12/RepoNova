@@ -11,8 +11,8 @@ export default function StarInfoPanel({ body, username, onClose }: StarInfoPanel
     const stars = body.stars ?? (body.mass === 5 ? 0 : body.mass / 2);
 
     return (
-        <div className="fixed sm:absolute inset-x-0 bottom-0 sm:inset-x-auto sm:bottom-auto sm:right-6 sm:top-32 w-full sm:w-80 z-20 animate-fadeIn max-h-[70vh] sm:max-h-none overflow-y-auto">
-            <div className="backdrop-blur-xl bg-black/60 border border-white/10 rounded-2xl shadow-[0_0_30px_rgba(255,136,0,0.2)] overflow-hidden">
+        <div className="fixed sm:absolute inset-x-0 bottom-0 sm:inset-x-auto sm:bottom-auto sm:right-6 sm:top-32 w-full sm:w-80 z-50 sm:z-20 animate-fadeIn max-h-[80vh] sm:max-h-none overflow-y-auto drop-shadow-[0_-15px_30px_rgba(0,0,0,0.8)] sm:drop-shadow-none">
+            <div className="backdrop-blur-2xl bg-black/80 sm:bg-black/60 border-t sm:border border-white/20 sm:border-white/10 rounded-t-3xl sm:rounded-2xl shadow-[0_0_30px_rgba(255,136,0,0.2)] overflow-hidden">
                 {/* Header */}
                 <div className="p-5 border-b border-white/10" style={{ borderTopColor: body.color, borderTopWidth: 3 }}>
                     <div className="flex justify-between items-start">

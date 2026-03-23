@@ -25,8 +25,8 @@ export default function UserProfileCard({ username }: { username: string }) {
     if (!profile) return null;
 
     return (
-        <div className="absolute top-20 sm:top-24 left-1/2 -translate-x-1/2 z-10 pointer-events-none animate-fadeIn">
-            <div className="pointer-events-auto backdrop-blur-xl bg-black/50 border border-white/10 rounded-2xl shadow-[0_0_30px_rgba(255,136,0,0.15)] px-4 sm:px-5 py-3 flex items-center gap-3 sm:gap-4 max-w-[90vw] sm:max-w-md">
+        <div className="absolute top-[125px] sm:top-24 left-1/2 -translate-x-1/2 z-10 pointer-events-none animate-fadeIn w-[95vw] sm:w-auto flex justify-center sm:block">
+            <div className="pointer-events-auto backdrop-blur-xl bg-black/50 border border-white/10 rounded-2xl shadow-[0_0_30px_rgba(255,136,0,0.15)] px-4 sm:px-5 py-3 flex items-center gap-3 sm:gap-4 w-full sm:max-w-md">
                 {/* Avatar */}
                 {profile.avatar_url && (
                     <img

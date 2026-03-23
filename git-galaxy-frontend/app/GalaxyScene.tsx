@@ -32,6 +32,21 @@ export default function GalaxyScene({ username }: { username: string }) {
     const [error, setError] = useState<string | null>(null);
     const [loadingStage, setLoadingStage] = useState(0);
 
+    // High-resolution export state
+    const [exportDpr, setExportDpr] = useState<number | null>(null);
+
+    // Listen for export events to temporarily boost resolution
+    useEffect(() => {
+        const handleStart = () => setExportDpr(3);
+        const handleEnd = () => setExportDpr(null);
+        window.addEventListener('start-high-res-export', handleStart);
+        window.addEventListener('end-high-res-export', handleEnd);
+        return () => {
+            window.removeEventListener('start-high-res-export', handleStart);
+            window.removeEventListener('end-high-res-export', handleEnd);
+        };
+    }, []);
+
     // Targeting Computer State
     const [isFocusMode, setIsFocusMode] = useState(false);
     const [focusedRepo, setFocusedRepo] = useState<string | null>(null);
@@ -41,6 +56,9 @@ export default function GalaxyScene({ username }: { username: string }) {
 
     // Keyboard shortcuts overlay
     const [showShortcuts, setShowShortcuts] = useState(false);
+
+    // Mobile specific HUD stat toggles
+    const [isMobileStatsOpen, setIsMobileStatsOpen] = useState(false);
 
     // Animated loading stages
     useEffect(() => {
@@ -205,7 +223,8 @@ export default function GalaxyScene({ username }: { username: string }) {
         <div className="h-screen w-full bg-black relative">
             <Canvas
                 camera={{ position: [0, 80, 180], fov: 60 }}
-                gl={{ preserveDrawingBuffer: true }}
+                gl={{ preserveDrawingBuffer: true, antialias: true, alpha: true }}
+                dpr={exportDpr || [1, 2]}
             >
                 <Stars radius={300} depth={50} count={10000} factor={4} saturation={0} fade speed={1} />
                 <ambientLight intensity={0.2} />
@@ -258,13 +277,31 @@ export default function GalaxyScene({ username }: { username: string }) {
 
             {/* THE HUD SIDE PANEL */}
             {bodies.length > 0 && (
-                <div className="absolute left-4 sm:left-6 top-28 sm:top-32 w-64 sm:w-72 z-10 pointer-events-none hidden sm:block">
-                    <div className="backdrop-blur-md bg-black/40 border border-white/10 p-6 rounded-2xl shadow-[0_0_20px_rgba(255,136,0,0.15)] pointer-events-auto">
-                        <h2 className="text-xl font-bold text-white mb-4 border-b border-white/20 pb-2 uppercase tracking-widest">
-                            Galaxy Stats
-                        </h2>
+                <>
+                    {/* Mobile Toggle Button */}
+                    <button
+                        onClick={() => setIsMobileStatsOpen(true)}
+                        className="absolute left-3 top-[260px] z-[60] sm:hidden backdrop-blur-md bg-black/40 border border-white/10 px-3 py-2 text-white font-bold text-xs shadow-[0_0_20px_rgba(255,136,0,0.15)] rounded-xl pointer-events-auto flex items-center gap-2 transition-colors hover:bg-black/60"
+                    >
+                        <span>📊 Stats</span>
+                    </button>
 
-                        <div className="space-y-4 font-mono text-sm">
+                    <div className={`absolute left-0 sm:left-6 top-0 sm:top-32 w-[85vw] max-w-sm sm:w-72 h-full sm:h-auto z-50 sm:z-10 pointer-events-none transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${isMobileStatsOpen ? "translate-x-0" : "-translate-x-full sm:translate-x-0"}`}>
+                        <div className="backdrop-blur-3xl sm:backdrop-blur-md bg-black/90 sm:bg-black/40 border-r sm:border border-white/20 sm:border-white/10 p-5 sm:p-6 sm:rounded-2xl shadow-[15px_0_30px_rgba(0,0,0,0.7)] sm:shadow-[0_0_20px_rgba(255,136,0,0.15)] pointer-events-auto h-full sm:h-auto overflow-y-auto">
+                            <div className="flex justify-between items-center mb-4 border-b border-white/20 pb-2">
+                                <h2 className="text-xl font-bold text-white uppercase tracking-widest mt-4 sm:mt-0">
+                                    Galaxy Stats
+                                </h2>
+                                <button
+                                    onClick={() => setIsMobileStatsOpen(false)}
+                                    className="sm:hidden text-gray-400 hover:text-white text-2xl leading-none p-1"
+                                    aria-label="Close Stats Panel"
+                                >
+                                    ✕
+                                </button>
+                            </div>
+
+                            <div className="space-y-4 font-mono text-sm pb-8 sm:pb-0">
                             <div className="flex justify-between items-center bg-white/5 p-3 rounded-lg border border-white/5">
                                 <span className="text-gray-400">Repositories</span>
                                 <span className="text-white font-bold text-lg">{galaxyStats.repoCount}</span>
@@ -353,6 +390,7 @@ export default function GalaxyScene({ username }: { username: string }) {
                         </div>
                     </div>
                 </div>
+                </>
             )}
 
             {/* Search/Filter Panel */}
@@ -363,7 +401,7 @@ export default function GalaxyScene({ username }: { username: string }) {
             )}
 
             {/* Rate Limit Dashboard */}
-            <div className="hidden sm:block">
+            <div>
                 <RateLimitDashboard apiUrl={API_URL} />
             </div>
 
