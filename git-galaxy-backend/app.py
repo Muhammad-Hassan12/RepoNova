@@ -2,6 +2,7 @@ import os
 import re
 import time
 import requests
+import concurrent.futures
 from flask import Flask, jsonify, request as flask_request
 from flask_cors import CORS
 from flask_limiter import Limiter
@@ -83,17 +84,13 @@ def get_github_headers():
         "Content-Type": "application/json",
     }
 
-# GraphQL: Fetch repos with cursor-based pagination
+# GraphQL: Fetch repos with parallel pseudo-pagination
 def fetch_all_repos(username: str):
-    """Fetches ALL repos using cursor-based pagination (100 per page)."""
+    """Fetches up to 400 unique repos using concurrent GraphQL requests to bypass sequential cursor limits."""
     query = """
-    query ($login: String!, $cursor: String) {
+    query ($login: String!, $orderField: RepositoryOrderField!) {
       user(login: $login) {
-        repositories(first: 100, after: $cursor, orderBy: {field: PUSHED_AT, direction: DESC}, isFork: false) {
-          pageInfo {
-            hasNextPage
-            endCursor
-          }
+        repositories(first: 100, orderBy: {field: $orderField, direction: DESC}, isFork: false) {
           nodes {
             name
             description
@@ -124,43 +121,45 @@ def fetch_all_repos(username: str):
     }
     """
 
-    all_repos = []
-    cursor = None
-    max_pages = 5  # Safety limit: max 500 repos
-    max_retries = 3  # Retry on transient 502/503 errors
+    order_fields = ["PUSHED_AT", "STARGAZERS", "CREATED_AT", "UPDATED_AT"]
+    all_repos_dict = {}
+    max_retries = 3
 
-    for _ in range(max_pages):
-        variables = {"login": username, "cursor": cursor}
+    # Use a shared session to reuse TCP connections
+    session = requests.Session()
+    session.headers.update(get_github_headers())
 
-        # Retry loop for transient GitHub API failures (502/503)
+    def _fetch_view(order_field):
+        variables = {"login": username, "orderField": order_field}
         response = None
         last_status = None
+        
         for attempt in range(max_retries):
             try:
-                response = requests.post(
+                response = session.post(
                     GITHUB_GRAPHQL_URL,
                     json={"query": query, "variables": variables},
-                    headers=get_github_headers(),
-                    timeout=30,
+                    timeout=20,
                 )
                 if response.status_code in (502, 503):
                     last_status = response.status_code
-                    backoff = (2 ** attempt)  # 1s, 2s, 4s
-                    time.sleep(backoff)
+                    time.sleep(1 + attempt) # Simple backoff
                     continue
-                break  # Success or non-retryable error
+                break
             except requests.exceptions.Timeout:
                 last_status = "timeout"
                 if attempt < max_retries - 1:
-                    time.sleep(2 ** attempt)
+                    time.sleep(1 + attempt)
                     continue
-                return None, "GitHub API request timed out. Try again."
+                return None, "GitHub API request timed out."
+            except Exception as e:
+                return None, str(e)
 
         if response is None:
-            return None, f"GitHub API failed after {max_retries} retries (last: {last_status})"
+            return None, f"Failed after retries (last: {last_status})"
 
         if response.status_code != 200:
-            return None, f"GitHub API returned status {response.status_code}"
+            return None, f"Status {response.status_code}"
 
         data = response.json()
 
@@ -174,16 +173,24 @@ def fetch_all_repos(username: str):
         if not user_data:
             return None, "USER_NOT_FOUND"
 
-        repos_data = user_data.get("repositories", {})
-        nodes = repos_data.get("nodes", [])
-        all_repos.extend(nodes)
+        return user_data.get("repositories", {}).get("nodes", []), None
 
-        page_info = repos_data.get("pageInfo", {})
-        if not page_info.get("hasNextPage"):
-            break
-        cursor = page_info.get("endCursor")
+    # Fetch 4 pages simultaneously (up to 400 repos)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
+        future_to_order = {executor.submit(_fetch_view, field): field for field in order_fields}
+        
+        for future in concurrent.futures.as_completed(future_to_order):
+            nodes, error = future.result()
+            
+            if error == "USER_NOT_FOUND":
+                return None, "USER_NOT_FOUND"
+                
+            if nodes:
+                for node in nodes:
+                    if node and node.get("name"):
+                        all_repos_dict[node["name"]] = node
 
-    return all_repos, None
+    return list(all_repos_dict.values()), None
 
 # GraphQL: Fetch contribution calendar
 def fetch_contributions(username: str):
