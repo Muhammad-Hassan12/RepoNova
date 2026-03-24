@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useMemo } from "react";
+import { useRef, useState, useMemo, useEffect } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 import * as THREE from "three";
@@ -10,6 +10,7 @@ export default function BlackHole({ username, totalMass, isFocusMode, focusedRep
     const innerDiskRef = useRef<THREE.Mesh>(null);
     const outerDiskRef = useRef<THREE.Mesh>(null);
     const dustRef = useRef<THREE.Points>(null);
+    const warpTimerRef = useRef(0);
 
     const { camera, controls } = useThree();
     const centerVec = useMemo(() => new THREE.Vector3(0, 0, 0), []);
@@ -31,6 +32,13 @@ export default function BlackHole({ username, totalMass, isFocusMode, focusedRep
         return positions;
     }, []);
 
+    // Reset warp timer when returning to Black Hole
+    useEffect(() => {
+        if (focusedRepo === "BLACK_HOLE") {
+            warpTimerRef.current = 0;
+        }
+    }, [focusedRepo]);
+
     useFrame((_, delta) => {
         if (innerDiskRef.current) innerDiskRef.current.rotation.z -= delta * 0.5;
         if (outerDiskRef.current) outerDiskRef.current.rotation.z -= delta * 0.2;
@@ -43,7 +51,11 @@ export default function BlackHole({ username, totalMass, isFocusMode, focusedRep
                 controlsRef.target.lerp(centerVec, 0.05);
                 controlsRef.update();
             }
-            camera.position.lerp(defaultCamPos, 0.05);
+            
+            warpTimerRef.current += delta;
+            if (warpTimerRef.current < 2.0) {
+                camera.position.lerp(defaultCamPos, 0.05);
+            }
         }
     });
 

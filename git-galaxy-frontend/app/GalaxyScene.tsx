@@ -253,6 +253,7 @@ export default function GalaxyScene({ username }: { username: string }) {
                         username={username}
                         safeOrbitDistance={safeOrbitDistance}
                         isFocusMode={isFocusMode}
+                        setIsFocusMode={setIsFocusMode}
                         focusedRepo={focusedRepo}
                         setFocusedRepo={setFocusedRepo}
                     />

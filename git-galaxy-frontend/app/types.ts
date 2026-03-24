@@ -79,6 +79,7 @@ export interface StarSystemProps {
     username: string;
     safeOrbitDistance: number;
     isFocusMode: boolean;
+    setIsFocusMode: (mode: boolean) => void;
     focusedRepo: string | null;
     setFocusedRepo: (repo: string | null) => void;
 }

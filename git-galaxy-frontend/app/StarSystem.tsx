@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 import * as THREE from "three";
@@ -25,10 +25,11 @@ function Comet({ radiusX, radiusZ, speed, angle, tilt }: CometProps) {
     );
 }
 
-export default function StarSystem({ body, username, safeOrbitDistance, isFocusMode, focusedRepo, setFocusedRepo }: StarSystemProps) {
+export default function StarSystem({ body, username, safeOrbitDistance, isFocusMode, setIsFocusMode, focusedRepo, setFocusedRepo }: StarSystemProps) {
     const orbitCenterRef = useRef<THREE.Group>(null);
     const starGroupRef = useRef<THREE.Group>(null);
     const asteroidsRef = useRef<THREE.Points>(null);
+    const warpTimerRef = useRef(0);
 
     const { camera, controls } = useThree();
     const targetVec = useMemo(() => new THREE.Vector3(), []);
@@ -83,8 +84,15 @@ export default function StarSystem({ body, username, safeOrbitDistance, isFocusM
         }));
     }, [cometCount, starRadius, body.repo_name]);
 
+    // Reset warp timer when targeting this specific star
+    useEffect(() => {
+        if (focusedRepo === body.repo_name) {
+            warpTimerRef.current = 0;
+        }
+    }, [focusedRepo, body.repo_name]);
+
     // THE TRACKING LOOP
-    useFrame(() => {
+    useFrame((_, delta) => {
         if (orbitCenterRef.current) orbitCenterRef.current.rotation.y += orbitSpeed;
         if (starGroupRef.current) starGroupRef.current.rotation.y += 0.01;
         if (asteroidsRef.current) asteroidsRef.current.rotation.y += 0.005;
@@ -95,14 +103,24 @@ export default function StarSystem({ body, username, safeOrbitDistance, isFocusM
 
             const controlsRef = controls as unknown as { target: THREE.Vector3; update: () => void };
             if (controlsRef?.target) {
+                const prevTarget = controlsRef.target.clone();
                 controlsRef.target.lerp(targetVec, 0.05);
+
+                warpTimerRef.current += delta;
+
+                if (warpTimerRef.current < 2.0) {
+                    // Phase 1 (0s to 2s): Warp the user smoothly to the preset offset coordinate
+                    offsetVec.set(starRadius * 4, starRadius * 3, starRadius * 5);
+                    desiredPosVec.copy(targetVec).add(offsetVec);
+                    camera.position.lerp(desiredPosVec, 0.05);
+                } else {
+                    // Phase 2 (>2s): Let user freely pan/zoom. Add exactly the amount the target moved to the camera to stay synced automatically
+                    const deltaPos = controlsRef.target.clone().sub(prevTarget);
+                    camera.position.add(deltaPos);
+                }
+
                 controlsRef.update();
             }
-
-            // Use pre-allocated vector to avoid memory allocation every frame
-            offsetVec.set(starRadius * 4, starRadius * 3, starRadius * 5);
-            desiredPosVec.copy(targetVec).add(offsetVec);
-            camera.position.lerp(desiredPosVec, 0.05);
         }
     });
 
@@ -112,16 +130,19 @@ export default function StarSystem({ body, username, safeOrbitDistance, isFocusM
                 <mesh
                     onClick={(e) => {
                         e.stopPropagation();
-                        if (isFocusMode) {
-                            setFocusedRepo(body.repo_name);
+                        // Direct toggle focus to this star instead of re-direct
+                        if (focusedRepo === body.repo_name) {
+                            setFocusedRepo(null);
+                            setIsFocusMode(false);
                         } else {
-                            window.open(`https://github.com/${username}/${body.repo_name}`, "_blank");
+                            setIsFocusMode(true);
+                            setFocusedRepo(body.repo_name);
                         }
                     }}
                     onPointerOver={(e) => {
                         e.stopPropagation();
                         setHovered(true);
-                        document.body.style.cursor = isFocusMode ? 'crosshair' : 'pointer';
+                        document.body.style.cursor = 'pointer';
                     }}
                     onPointerOut={() => {
                         setHovered(false);
