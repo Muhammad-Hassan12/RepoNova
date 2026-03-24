@@ -25,7 +25,7 @@ export default function AboutModal() {
         <>
             <button
                 onClick={() => setIsOpen(true)}
-                className="pointer-events-auto backdrop-blur-md bg-black/30 border border-white/10 px-4 py-1.5 rounded-full text-gray-500 hover:text-gray-300 text-xs font-mono transition-all hover:bg-white/5 hover:border-white/20"
+                className="pointer-events-auto backdrop-blur-md bg-black/30 border border-white/10 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full text-gray-500 hover:text-gray-300 text-[10px] sm:text-xs font-mono transition-all hover:bg-white/5 hover:border-white/20"
             >
                 ℹ️ About GitGalaxy
             </button>

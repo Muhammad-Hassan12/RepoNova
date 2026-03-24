@@ -18,7 +18,7 @@ export default function LegendModal() {
         <>
             <button
                 onClick={() => setIsOpen(true)}
-                className="pointer-events-auto backdrop-blur-md bg-black/30 border border-orange-500/30 px-4 py-1.5 rounded-full text-orange-400 hover:text-orange-300 text-xs font-mono transition-all hover:bg-orange-500/10 hover:border-orange-500/50 font-bold shadow-[0_0_15px_rgba(255,136,0,0.2)]"
+                className="pointer-events-auto backdrop-blur-md bg-black/30 border border-orange-500/30 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full text-orange-400 hover:text-orange-300 text-[10px] sm:text-xs font-mono transition-all hover:bg-orange-500/10 hover:border-orange-500/50 font-bold shadow-[0_0_15px_rgba(255,136,0,0.2)]"
             >
                 🗺️ Map Legend
             </button>

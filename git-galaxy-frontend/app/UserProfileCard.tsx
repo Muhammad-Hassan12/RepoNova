@@ -25,14 +25,14 @@ export default function UserProfileCard({ username }: { username: string }) {
     if (!profile) return null;
 
     return (
-        <div className="absolute top-[125px] sm:top-24 left-1/2 -translate-x-1/2 z-10 pointer-events-none animate-fadeIn w-[95vw] sm:w-auto flex justify-center sm:block">
-            <div className="pointer-events-auto backdrop-blur-xl bg-black/50 border border-white/10 rounded-2xl shadow-[0_0_30px_rgba(255,136,0,0.15)] px-4 sm:px-5 py-3 flex items-center gap-3 sm:gap-4 w-full sm:max-w-md">
+        <div className="absolute top-[90px] sm:top-24 left-1/2 -translate-x-1/2 z-10 pointer-events-none animate-fadeIn w-[95vw] sm:w-auto flex justify-center sm:block">
+            <div className="pointer-events-auto backdrop-blur-xl bg-black/50 border border-white/10 rounded-2xl shadow-[0_0_30px_rgba(255,136,0,0.15)] px-3 py-2 sm:px-5 sm:py-3 flex items-center gap-3 sm:gap-4 w-full sm:max-w-md">
                 {/* Avatar */}
                 {profile.avatar_url && (
                     <img
                         src={profile.avatar_url}
                         alt={profile.name || username}
-                        className="w-12 h-12 rounded-full border-2 border-orange-500/40 shadow-[0_0_15px_rgba(255,136,0,0.3)] flex-shrink-0"
+                        className="w-8 h-8 sm:w-12 sm:h-12 rounded-full border-2 border-orange-500/40 shadow-[0_0_15px_rgba(255,136,0,0.3)] flex-shrink-0"
                     />
                 )}
 
@@ -51,10 +51,11 @@ export default function UserProfileCard({ username }: { username: string }) {
 
                     <div className="flex items-center gap-3 mt-1.5 text-xs font-mono">
                         <span className="text-gray-400">
-                            <span className="text-white font-bold">{profile.followers.toLocaleString()}</span> followers
+                            <span className="text-white font-bold">{profile.followers.toLocaleString()}</span> <span className="hidden sm:inline">followers</span>
+                            <span className="inline sm:hidden ml-1">👥</span>
                         </span>
                         <span className="text-gray-400">
-                            <span className="text-white font-bold">{profile.following.toLocaleString()}</span> following
+                            <span className="text-white font-bold">{profile.following.toLocaleString()}</span> <span className="hidden sm:inline">following</span>
                         </span>
                         {profile.location && (
                             <span className="text-gray-500 hidden sm:inline">📍 {profile.location}</span>

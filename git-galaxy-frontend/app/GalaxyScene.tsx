@@ -282,7 +282,7 @@ export default function GalaxyScene({ username }: { username: string }) {
                     {/* Mobile Toggle Button */}
                     <button
                         onClick={() => setIsMobileStatsOpen(true)}
-                        className="absolute left-3 top-[260px] z-[60] sm:hidden backdrop-blur-md bg-black/40 border border-white/10 px-3 py-2 text-white font-bold text-xs shadow-[0_0_20px_rgba(255,136,0,0.15)] rounded-xl pointer-events-auto flex items-center gap-2 transition-colors hover:bg-black/60"
+                        className="absolute left-3 top-[180px] z-[60] sm:hidden backdrop-blur-md bg-black/40 border border-white/10 px-2.5 py-1.5 text-white font-bold text-[10px] shadow-[0_0_20px_rgba(255,136,0,0.15)] rounded-lg pointer-events-auto flex items-center gap-1.5 transition-colors hover:bg-black/60"
                     >
                         <span>📊 Stats</span>
                     </button>
