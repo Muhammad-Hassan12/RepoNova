@@ -70,10 +70,13 @@ export default function GalaxyScene({ username }: { username: string }) {
     }, [loading]);
 
     useEffect(() => {
+        const controller = new AbortController();
+        const signal = controller.signal;
+
         setError(null);
         setLoading(true);
         setLoadingStage(0);
-        fetch(`${API_URL}/api/galaxy/${username}`)
+        fetch(`${API_URL}/api/galaxy/${username}`, { signal })
             .then((res) => {
                 if (!res.ok) {
                     return res.json().then((data) => {
@@ -92,10 +95,18 @@ export default function GalaxyScene({ username }: { username: string }) {
                 setLoading(false);
             })
             .catch((err) => {
+                if (err.name === 'AbortError') {
+                    console.log('Fetch aborted');
+                    return;
+                }
                 console.error("Failed to fetch galaxy data:", err);
                 setError(err.message || "Failed to connect to the Cosmic Engine. Is the backend running?");
                 setLoading(false);
             });
+
+        return () => {
+            controller.abort();
+        };
     }, [username]);
 
     const totalMass = useMemo(() => bodies.reduce((sum, body) => sum + body.mass, 0), [bodies]);

@@ -7,12 +7,17 @@ from flask import Flask, jsonify, request as flask_request
 from flask_cors import CORS
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from werkzeug.middleware.proxy_fix import ProxyFix
+from cachetools import TTLCache
 from dotenv import load_dotenv
 
 # Initialize environment variables
 load_dotenv()
 
 app = Flask(__name__)
+
+# Apply ProxyFix to correctly identify client IPs behind reverse proxies
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
 
 # Configuration from Environment
 GITHUB_TOKEN = os.getenv("GITHUB_PAT")
@@ -30,19 +35,13 @@ CORS(app, origins=allowed_origins)
 limiter = Limiter(get_remote_address, app=app, default_limits=["60 per minute"])
 
 # Simple In-Memory TTL Cache
-_cache: dict[str, dict] = {}
-CACHE_TTL = 120  # seconds
+_cache = TTLCache(maxsize=1000, ttl=120)
 
 def cache_get(key: str):
-    entry = _cache.get(key)
-    if entry and (time.time() - entry["timestamp"] < CACHE_TTL):
-        return entry["data"]
-    if entry:
-        del _cache[key]
-    return None
+    return _cache.get(key)
 
 def cache_set(key: str, data):
-    _cache[key] = {"data": data, "timestamp": time.time()}
+    _cache[key] = data
 
 # Language Color Map
 LANGUAGE_COLORS = {
@@ -152,6 +151,12 @@ def fetch_all_repos(username: str):
                     time.sleep(1 + attempt)
                     continue
                 return None, "GitHub API request timed out."
+            except requests.exceptions.ConnectionError:
+                last_status = "connection_error"
+                if attempt < max_retries - 1:
+                    time.sleep(1 + attempt)
+                    continue
+                return None, "Failed to connect to GitHub API."
             except Exception as e:
                 return None, str(e)
 
