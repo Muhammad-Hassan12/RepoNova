@@ -25,31 +25,31 @@ export default function UserProfileCard({ username }: { username: string }) {
     if (!profile) return null;
 
     return (
-        <div className="absolute top-[90px] sm:top-24 left-1/2 -translate-x-1/2 z-10 pointer-events-none animate-fadeIn w-[95vw] sm:w-auto flex justify-center sm:block">
-            <div className="pointer-events-auto backdrop-blur-xl bg-black/50 border border-white/10 rounded-2xl shadow-[0_0_30px_rgba(255,136,0,0.15)] px-3 py-2 sm:px-5 sm:py-3 flex items-center gap-3 sm:gap-4 w-full sm:max-w-md">
+        <div className="absolute top-[88px] sm:top-24 left-1/2 -translate-x-1/2 z-10 pointer-events-none animate-fadeIn w-auto sm:w-auto flex justify-center sm:block">
+            <div className="pointer-events-auto backdrop-blur-xl bg-black/50 border border-white/10 rounded-xl sm:rounded-2xl shadow-[0_0_30px_rgba(255,136,0,0.15)] px-2 py-1.5 sm:px-5 sm:py-3 flex items-center gap-2 sm:gap-4 max-w-[260px] sm:max-w-md">
                 {/* Avatar */}
                 {profile.avatar_url && (
                     <img
                         src={profile.avatar_url}
                         alt={profile.name || username}
-                        className="w-8 h-8 sm:w-12 sm:h-12 rounded-full border-2 border-orange-500/40 shadow-[0_0_15px_rgba(255,136,0,0.3)] flex-shrink-0"
+                        className="w-7 h-7 sm:w-12 sm:h-12 rounded-full border-2 border-orange-500/40 shadow-[0_0_15px_rgba(255,136,0,0.3)] flex-shrink-0"
                     />
                 )}
 
                 {/* Info */}
                 <div className="min-w-0">
                     <div className="flex items-baseline gap-2">
-                        <span className="text-white font-bold text-sm truncate">
+                        <span className="text-white font-bold text-xs sm:text-sm truncate">
                             {profile.name || username}
                         </span>
-                        <span className="text-gray-500 font-mono text-xs">@{username}</span>
+                        <span className="text-gray-500 font-mono text-[10px] sm:text-xs">@{username}</span>
                     </div>
 
                     {profile.bio && (
                         <p className="text-gray-400 text-xs mt-0.5 line-clamp-1">{profile.bio}</p>
                     )}
 
-                    <div className="flex items-center gap-3 mt-1.5 text-xs font-mono">
+                    <div className="flex items-center gap-2 sm:gap-3 mt-1 sm:mt-1.5 text-[10px] sm:text-xs font-mono">
                         <span className="text-gray-400">
                             <span className="text-white font-bold">{profile.followers.toLocaleString()}</span> <span className="hidden sm:inline">followers</span>
                             <span className="inline sm:hidden ml-1">👥</span>

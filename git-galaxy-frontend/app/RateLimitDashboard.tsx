@@ -36,7 +36,7 @@ export default function RateLimitDashboard({ apiUrl }: RateLimitDashboardProps) 
     const barColor = percentage > 50 ? "#22c55e" : percentage > 20 ? "#eab308" : "#ef4444";
 
     return (
-        <div className="absolute bottom-16 sm:bottom-6 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 sm:right-6 z-10 pointer-events-auto w-[90vw] sm:w-auto flex justify-center sm:block">
+        <div className="absolute bottom-10 sm:bottom-6 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 sm:right-6 z-10 pointer-events-auto w-auto sm:w-auto max-w-[200px] sm:max-w-none flex justify-center sm:block">
             <div className="backdrop-blur-md bg-black/40 border border-white/10 p-2 sm:p-3 rounded-lg sm:rounded-xl shadow-lg text-[10px] sm:text-xs font-mono min-w-[180px] sm:min-w-[180px] w-full sm:w-auto">
                 <div className="flex justify-between items-center mb-2">
                     <span className="hidden sm:inline text-gray-400 uppercase tracking-wider text-[10px]">API Quota</span>

@@ -293,13 +293,13 @@ export default function GalaxyScene({ username }: { username: string }) {
                     {/* Mobile Toggle Button */}
                     <button
                         onClick={() => setIsMobileStatsOpen(true)}
-                        className="absolute left-3 top-[180px] z-[60] sm:hidden backdrop-blur-md bg-black/40 border border-white/10 px-2.5 py-1.5 text-white font-bold text-[10px] shadow-[0_0_20px_rgba(255,136,0,0.15)] rounded-lg pointer-events-auto flex items-center gap-1.5 transition-colors hover:bg-black/60"
+                        className="absolute left-3 top-[110px] z-[60] sm:hidden backdrop-blur-md bg-black/40 border border-white/10 px-2 py-1 text-white font-bold text-[10px] shadow-[0_0_20px_rgba(255,136,0,0.15)] rounded-lg pointer-events-auto flex items-center gap-1.5 transition-colors hover:bg-black/60"
                     >
                         <span>📊 Stats</span>
                     </button>
 
-                    <div className={`absolute left-0 sm:left-6 top-0 sm:top-32 w-[85vw] max-w-sm sm:w-72 h-full sm:h-auto z-50 sm:z-10 pointer-events-none transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${isMobileStatsOpen ? "translate-x-0" : "-translate-x-full sm:translate-x-0"}`}>
-                        <div className="backdrop-blur-3xl sm:backdrop-blur-md bg-black/90 sm:bg-black/40 border-r sm:border border-white/20 sm:border-white/10 p-5 sm:p-6 sm:rounded-2xl shadow-[15px_0_30px_rgba(0,0,0,0.7)] sm:shadow-[0_0_20px_rgba(255,136,0,0.15)] pointer-events-auto h-full sm:h-auto overflow-y-auto">
+                    <div className={`absolute left-0 sm:left-6 top-0 sm:top-32 w-[75vw] max-w-[280px] sm:w-72 h-full sm:h-auto z-50 sm:z-10 pointer-events-none transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${isMobileStatsOpen ? "translate-x-0" : "-translate-x-full sm:translate-x-0"}`}>
+                        <div className="backdrop-blur-3xl sm:backdrop-blur-md bg-black/90 sm:bg-black/40 border-r sm:border border-white/20 sm:border-white/10 p-4 sm:p-6 sm:rounded-2xl shadow-[15px_0_30px_rgba(0,0,0,0.7)] sm:shadow-[0_0_20px_rgba(255,136,0,0.15)] pointer-events-auto h-full sm:h-auto overflow-y-auto">
                             <div className="flex justify-between items-center mb-4 border-b border-white/20 pb-2">
                                 <h2 className="text-xl font-bold text-white uppercase tracking-widest mt-4 sm:mt-0">
                                     Galaxy Stats
@@ -314,21 +314,21 @@ export default function GalaxyScene({ username }: { username: string }) {
                             </div>
 
                             <div className="space-y-4 font-mono text-sm pb-8 sm:pb-0">
-                            <div className="flex justify-between items-center bg-white/5 p-3 rounded-lg border border-white/5">
+                            <div className="flex justify-between items-center bg-white/5 p-2.5 sm:p-3 rounded-lg border border-white/5">
                                 <span className="text-gray-400">Repositories</span>
-                                <span className="text-white font-bold text-lg">{galaxyStats.repoCount}</span>
+                                <span className="text-white font-bold text-base sm:text-lg">{galaxyStats.repoCount}</span>
                             </div>
-                            <div className="flex justify-between items-center bg-white/5 p-3 rounded-lg border border-white/5">
+                            <div className="flex justify-between items-center bg-white/5 p-2.5 sm:p-3 rounded-lg border border-white/5">
                                 <span className="text-gray-400">Total Stars</span>
-                                <span className="text-yellow-400 font-bold text-lg">⭐ {galaxyStats.totalStars}</span>
+                                <span className="text-yellow-400 font-bold text-base sm:text-lg">⭐ {galaxyStats.totalStars}</span>
                             </div>
-                            <div className="flex justify-between items-center bg-white/5 p-3 rounded-lg border border-white/5">
+                            <div className="flex justify-between items-center bg-white/5 p-2.5 sm:p-3 rounded-lg border border-white/5">
                                 <span className="text-gray-400">Total Forks</span>
-                                <span className="text-green-400 font-bold text-lg">🍴 {galaxyStats.totalForks}</span>
+                                <span className="text-green-400 font-bold text-base sm:text-lg">🍴 {galaxyStats.totalForks}</span>
                             </div>
-                            <div className="flex justify-between items-center bg-white/5 p-3 rounded-lg border border-white/5">
+                            <div className="flex justify-between items-center bg-white/5 p-2.5 sm:p-3 rounded-lg border border-white/5">
                                 <span className="text-gray-400">Total Commits</span>
-                                <span className="text-blue-400 font-bold text-lg">☄️ {galaxyStats.totalCommits}</span>
+                                <span className="text-blue-400 font-bold text-base sm:text-lg">☄️ {galaxyStats.totalCommits}</span>
                             </div>
 
                             {/* Top Languages */}
@@ -391,7 +391,7 @@ export default function GalaxyScene({ username }: { username: string }) {
                             </div>
 
                             {/* Keyboard Shortcuts Hint */}
-                            <div className="text-center">
+                            <div className="text-center hidden sm:block">
                                 <button
                                     onClick={() => setShowShortcuts(!showShortcuts)}
                                     className="text-gray-600 hover:text-gray-400 text-xs transition-colors"
