@@ -12,7 +12,8 @@ export default function ContributionNebula({ username, scaleMultiplier }: Contri
     const [days, setDays] = useState<ContributionDay[]>([]);
 
     useEffect(() => {
-        fetch(`${API_URL}/api/contributions/${username}`)
+        const controller = new AbortController();
+        fetch(`${API_URL}/api/contributions/${username}`, { signal: controller.signal })
             .then((res) => res.json())
             .then((data) => {
                 if (data.weeks) {
@@ -28,8 +29,10 @@ export default function ContributionNebula({ username, scaleMultiplier }: Contri
                 }
             })
             .catch((err) => {
+                if (err.name === 'AbortError') return;
                 console.warn("Failed to fetch contribution data:", err);
             });
+        return () => controller.abort();
     }, [username]);
 
     const { positions, colors, sizes } = useMemo(() => {

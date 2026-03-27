@@ -71,7 +71,7 @@ export default function ExportButton({ username }: ExportButtonProps) {
                 setTimeout(() => setStatus("idle"), 2000);
             }
         }, 800); // 800ms gives React and R3F time to switch to high DPR and render a frame
-    }, []);
+    }, [username]);
 
     return (
         <button

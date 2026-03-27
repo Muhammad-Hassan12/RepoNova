@@ -9,8 +9,9 @@ export default function UserProfileCard({ username }: { username: string }) {
     const [profile, setProfile] = useState<UserProfile | null>(null);
 
     useEffect(() => {
+        const controller = new AbortController();
         setProfile(null);
-        fetch(`${API_URL}/api/user/${username}`)
+        fetch(`${API_URL}/api/user/${username}`, { signal: controller.signal })
             .then((res) => res.json())
             .then((data) => {
                 if (!data.error) {
@@ -18,8 +19,10 @@ export default function UserProfileCard({ username }: { username: string }) {
                 }
             })
             .catch((err) => {
+                if (err.name === 'AbortError') return;
                 console.warn("Failed to fetch user profile:", err);
             });
+        return () => controller.abort();
     }, [username]);
 
     if (!profile) return null;

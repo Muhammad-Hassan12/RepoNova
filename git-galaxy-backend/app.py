@@ -24,7 +24,7 @@ GITHUB_TOKEN = os.getenv("GITHUB_PAT")
 GITHUB_GRAPHQL_URL = "https://api.github.com/graphql"
 GITHUB_REST_URL = "https://api.github.com"
 PORT = int(os.getenv("PORT", 8000))
-FLASK_DEBUG = os.getenv("FLASK_DEBUG", "true").lower() == "true"
+FLASK_DEBUG = os.getenv("FLASK_DEBUG", "false").lower() == "true"
 
 # CORS: Restrict origins via env or default to localhost
 cors_origins = os.getenv("CORS_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000")
