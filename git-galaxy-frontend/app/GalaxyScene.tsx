@@ -345,29 +345,8 @@ export default function GalaxyScene({ username }: { username: string }) {
                                 </div>
                             )}
 
-                            {/* Targeting Computer Toggle */}
-                            <div className="mt-6 border-t border-white/20 pt-4">
-                                <div className="flex items-center justify-between">
-                                    <span className="text-gray-400 text-sm font-mono uppercase">Targeting Computer</span>
-                                    <button
-                                        onClick={() => {
-                                            setIsFocusMode(!isFocusMode);
-                                            if (isFocusMode) setFocusedRepo(null);
-                                        }}
-                                        className={`px-3 py-1 rounded text-xs font-bold transition-all ${isFocusMode ? 'bg-red-500 text-white shadow-[0_0_15px_rgba(239,68,68,0.6)]' : 'bg-white/10 text-gray-400 hover:bg-white/20'}`}
-                                    >
-                                        {isFocusMode ? 'ACTIVE' : 'STANDBY'}
-                                    </button>
-                                </div>
-                                {isFocusMode && (
-                                    <p className="text-xs text-red-300 mt-2 italic animate-pulse">
-                                        Click a star to lock on. Click Black Hole to reset.
-                                    </p>
-                                )}
-                            </div>
-
                             {/* Warp to Random Star */}
-                            <div className="border-t border-white/20 pt-4">
+                            <div className="mt-6 border-t border-white/20 pt-4">
                                 <button
                                     onClick={warpToRandom}
                                     className="w-full bg-gradient-to-r from-purple-600/20 to-blue-600/20 border border-purple-500/30 hover:border-purple-500/60 text-purple-300 hover:text-purple-200 px-3 py-2 rounded-lg text-xs font-bold transition-all hover:shadow-[0_0_15px_rgba(168,85,247,0.3)] flex items-center justify-center gap-2"
