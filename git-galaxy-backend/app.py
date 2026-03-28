@@ -15,18 +15,16 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-
-# Apply ProxyFix to correctly identify client IPs behind reverse proxies
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
 
-# Configuration from Environment
+# Environment variables
 GITHUB_TOKEN = os.getenv("GITHUB_PAT")
 GITHUB_GRAPHQL_URL = "https://api.github.com/graphql"
 GITHUB_REST_URL = "https://api.github.com"
 PORT = int(os.getenv("PORT", 8000))
 FLASK_DEBUG = os.getenv("FLASK_DEBUG", "false").lower() == "true"
 
-# CORS: Restrict origins via env or default to localhost
+# CORS
 cors_origins = os.getenv("CORS_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000")
 allowed_origins = [origin.strip() for origin in cors_origins.split(",")]
 CORS(app, origins=allowed_origins)
@@ -34,7 +32,6 @@ CORS(app, origins=allowed_origins)
 # Rate Limiting
 limiter = Limiter(get_remote_address, app=app, default_limits=["60 per minute"])
 
-# Simple In-Memory TTL Cache
 _cache = TTLCache(maxsize=1000, ttl=120)
 
 def cache_get(key: str):
@@ -83,7 +80,7 @@ def get_github_headers():
         "Content-Type": "application/json",
     }
 
-# GraphQL: Fetch repos with parallel pseudo-pagination
+# GraphQL
 def fetch_all_repos(username: str):
     """Fetches up to 400 unique repos using concurrent GraphQL requests to bypass sequential cursor limits."""
     query = """

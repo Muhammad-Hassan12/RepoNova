@@ -45,7 +45,7 @@ export default function StarSystem({ body, username, safeOrbitDistance, isFocusM
     const particlesCount = Math.min(400, body.orbiting_particles);
     const cometCount = Math.min(5, body.open_prs || 0);
 
-    // Deterministic layout: seed random from repo name hash
+    // Deterministic layout
     const { orbitRadius, startAngle, orbitSpeed, yOffset } = useMemo(() => {
         const seed = hashString(body.repo_name);
         const rng = seededRandom(seed);
@@ -84,7 +84,6 @@ export default function StarSystem({ body, username, safeOrbitDistance, isFocusM
         }));
     }, [cometCount, starRadius, body.repo_name]);
 
-    // Reset warp timer when targeting this specific star
     useEffect(() => {
         if (focusedRepo === body.repo_name) {
             warpTimerRef.current = 0;
@@ -109,12 +108,10 @@ export default function StarSystem({ body, username, safeOrbitDistance, isFocusM
                 warpTimerRef.current += delta;
 
                 if (warpTimerRef.current < 2.0) {
-                    // Phase 1 (0s to 2s): Warp the user smoothly to the preset offset coordinate
                     offsetVec.set(starRadius * 4, starRadius * 3, starRadius * 5);
                     desiredPosVec.copy(targetVec).add(offsetVec);
                     camera.position.lerp(desiredPosVec, 0.05);
                 } else {
-                    // Phase 2 (>2s): Let user freely pan/zoom. Add exactly the amount the target moved to the camera to stay synced automatically
                     const deltaPos = controlsRef.target.clone().sub(prevTarget);
                     camera.position.add(deltaPos);
                 }

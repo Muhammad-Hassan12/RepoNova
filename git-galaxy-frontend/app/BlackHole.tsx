@@ -32,7 +32,6 @@ export default function BlackHole({ username, totalMass, isFocusMode, focusedRep
         return positions;
     }, []);
 
-    // Reset warp timer when returning to Black Hole
     useEffect(() => {
         if (focusedRepo === "BLACK_HOLE") {
             warpTimerRef.current = 0;
@@ -43,15 +42,13 @@ export default function BlackHole({ username, totalMass, isFocusMode, focusedRep
         if (innerDiskRef.current) innerDiskRef.current.rotation.z -= delta * 0.5;
         if (outerDiskRef.current) outerDiskRef.current.rotation.z -= delta * 0.2;
         if (dustRef.current) dustRef.current.rotation.y -= delta * 0.3;
-
-        // THE RESET TRACKING: Smoothly return to the main galaxy view
         if (focusedRepo === "BLACK_HOLE") {
             const controlsRef = controls as unknown as { target: THREE.Vector3; update: () => void };
             if (controlsRef?.target) {
                 controlsRef.target.lerp(centerVec, 0.05);
                 controlsRef.update();
             }
-            
+
             warpTimerRef.current += delta;
             if (warpTimerRef.current < 2.0) {
                 camera.position.lerp(defaultCamPos, 0.05);

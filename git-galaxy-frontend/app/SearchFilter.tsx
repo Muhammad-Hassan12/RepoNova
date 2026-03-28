@@ -42,18 +42,14 @@ export default function SearchFilter({ bodies, onFilterChange }: SearchFilterPro
     const filtered = useMemo(() => {
         let result = [...bodies];
 
-        // Search by name
         if (searchTerm.trim()) {
             const term = searchTerm.toLowerCase();
             result = result.filter((b) => b.repo_name.toLowerCase().includes(term));
         }
 
-        // Filter by language
         if (selectedLanguages.size > 0) {
             result = result.filter((b) => selectedLanguages.has(b.language));
         }
-
-        // Sort
         result.sort((a, b) => {
             switch (sortBy) {
                 case "name":
@@ -108,11 +104,10 @@ export default function SearchFilter({ bodies, onFilterChange }: SearchFilterPro
                                 <button
                                     key={field}
                                     onClick={() => setSortBy(field)}
-                                    className={`px-2 py-0.5 rounded text-xs font-mono transition-all ${
-                                        sortBy === field
+                                    className={`px-2 py-0.5 rounded text-xs font-mono transition-all ${sortBy === field
                                             ? "bg-orange-500/20 text-orange-400 border border-orange-500/30"
                                             : "bg-white/5 text-gray-400 border border-transparent hover:bg-white/10"
-                                    }`}
+                                        }`}
                                 >
                                     {field}
                                 </button>
@@ -125,11 +120,10 @@ export default function SearchFilter({ bodies, onFilterChange }: SearchFilterPro
                                 <button
                                     key={lang}
                                     onClick={() => toggleLanguage(lang)}
-                                    className={`px-2 py-0.5 rounded-full text-xs font-mono transition-all border ${
-                                        selectedLanguages.has(lang)
+                                    className={`px-2 py-0.5 rounded-full text-xs font-mono transition-all border ${selectedLanguages.has(lang)
                                             ? "opacity-100 shadow-sm"
                                             : "opacity-50 hover:opacity-80"
-                                    }`}
+                                        }`}
                                     style={{
                                         backgroundColor: selectedLanguages.has(lang) ? langColors[lang] + "30" : "transparent",
                                         color: langColors[lang],

@@ -24,17 +24,15 @@ export default function ExportButton({ username }: ExportButtonProps) {
             }
 
             try {
-                // Create an off-screen canvas to composite the high-res 3D scene + watermark
                 const exportCanvas = document.createElement("canvas");
                 exportCanvas.width = canvas.width;
                 exportCanvas.height = canvas.height;
                 const ctx = exportCanvas.getContext("2d");
 
                 if (ctx) {
-                    // Draw the high-res 3D scene
                     ctx.drawImage(canvas, 0, 0);
 
-                    // Add a sleek watermark
+                    // Adding Watermark
                     ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
                     ctx.font = `bold ${Math.max(20, exportCanvas.height * 0.02)}px monospace`;
                     ctx.textAlign = "right";
@@ -78,12 +76,12 @@ export default function ExportButton({ username }: ExportButtonProps) {
             onClick={handleExport}
             disabled={status === "loading"}
             className={`backdrop-blur-md border px-4 py-2 rounded-full text-sm font-mono transition-all shadow-lg flex items-center gap-2 ${status === "success"
-                    ? "bg-green-500/20 border-green-500/30 text-green-400 shadow-[0_0_15px_rgba(34,197,94,0.3)]"
-                    : status === "error"
-                        ? "bg-red-500/20 border-red-500/30 text-red-400 shadow-[0_0_15px_rgba(239,68,68,0.3)]"
-                        : status === "loading"
-                            ? "bg-blue-500/20 border-blue-500/30 text-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.3)] cursor-wait"
-                            : "bg-black/40 border-white/10 text-white hover:bg-white/10 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]"
+                ? "bg-green-500/20 border-green-500/30 text-green-400 shadow-[0_0_15px_rgba(34,197,94,0.3)]"
+                : status === "error"
+                    ? "bg-red-500/20 border-red-500/30 text-red-400 shadow-[0_0_15px_rgba(239,68,68,0.3)]"
+                    : status === "loading"
+                        ? "bg-blue-500/20 border-blue-500/30 text-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.3)] cursor-wait"
+                        : "bg-black/40 border-white/10 text-white hover:bg-white/10 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]"
                 }`}
             title="Export galaxy as PNG"
         >

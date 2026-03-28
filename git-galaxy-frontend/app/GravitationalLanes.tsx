@@ -24,7 +24,6 @@ export default function GravitationalLanes({ bodies }: GravitationalLanesProps) 
             }
         });
 
-        // Only show lanes for languages with 2+ repos
         return Object.entries(langGroups)
             .filter(([, group]) => group.count >= 2)
             .map(([lang, group], index) => {

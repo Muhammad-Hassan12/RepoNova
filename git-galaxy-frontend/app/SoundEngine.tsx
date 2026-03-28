@@ -38,7 +38,7 @@ export default function SoundEngine({ enabled, focusedBody }: SoundEngineProps) 
         const ctx = new AudioContext();
         audioCtxRef.current = ctx;
 
-        // Master Compressor and Gain Setup
+        // Master Compressor
         const compressor = ctx.createDynamicsCompressor();
         compressor.threshold.value = -24;
         compressor.knee.value = 30;
@@ -54,7 +54,7 @@ export default function SoundEngine({ enabled, focusedBody }: SoundEngineProps) 
         compressor.connect(masterGain);
         masterGain.connect(ctx.destination);
 
-        // Ambient drone: low-frequency oscillator
+        // Ambient drone
         const ambientGain = ctx.createGain();
         ambientGain.gain.value = 0.08;
         ambientGain.connect(compressor);
@@ -85,7 +85,7 @@ export default function SoundEngine({ enabled, focusedBody }: SoundEngineProps) 
         osc3.frequency.value = 110;
         const gain3 = ctx.createGain();
         gain3.gain.value = 0.015; // Keep it subtle so it feels deep, not buzzy
-        
+
         // Lowpass filter to tame high-end harshness from sawtooth
         const filter = ctx.createBiquadFilter();
         filter.type = "lowpass";

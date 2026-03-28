@@ -33,12 +33,12 @@ export default function Home() {
     return (
         <main className="relative h-screen w-screen bg-black overflow-hidden font-sans">
 
-            {/* THE 3D CANVAS (Background Layer) */}
+            {/* THE 3D CANVAS */}
             <div className="absolute inset-0">
                 <GalaxyScene key={activeUsername} username={activeUsername} />
             </div>
 
-            {/* THE UI OVERLAY (Foreground Layer) */}
+            {/* THE UI OVERLAY */}
             <div className="absolute top-0 left-0 w-full z-10 pointer-events-none p-1.5 sm:p-6 flex flex-col sm:flex-row justify-between items-start gap-1 sm:gap-3">
 
                 {/* Logo / Branding Area */}

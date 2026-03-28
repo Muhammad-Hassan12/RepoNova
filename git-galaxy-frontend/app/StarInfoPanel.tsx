@@ -2,9 +2,6 @@
 
 import { StarInfoPanelProps } from "./types";
 
-/**
- * Detailed side panel that appears when a star is locked on via Targeting Computer.
- */
 export default function StarInfoPanel({ body, username, onClose }: StarInfoPanelProps) {
     if (!body) return null;
 
