@@ -1,15 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GalaxyScene from "./GalaxyScene";
+
+const DEFAULT_PROFILES = ["torvalds", "shanselman", "obra", "yyx990803", "bradtraversy", "tj"];
 import ExportButton from "./ExportButton";
 import UserProfileCard from "./UserProfileCard";
 import AboutModal from "./AboutModal";
 import LegendModal from "./LegendModal";
 
 export default function Home() {
-    const [activeUsername, setActiveUsername] = useState("torvalds");
+    const [activeUsername, setActiveUsername] = useState("");
     const [searchInput, setSearchInput] = useState("");
+
+    useEffect(() => {
+        const randomIndex = Math.floor(Math.random() * DEFAULT_PROFILES.length);
+        setActiveUsername(DEFAULT_PROFILES[randomIndex]);
+    }, []);
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
@@ -18,6 +25,10 @@ export default function Home() {
             setSearchInput("");
         }
     };
+
+    if (!activeUsername) {
+        return <main className="relative h-screen w-screen bg-black overflow-hidden" />;
+    }
 
     return (
         <main className="relative h-screen w-screen bg-black overflow-hidden font-sans">
