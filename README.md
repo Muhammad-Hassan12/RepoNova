@@ -29,6 +29,9 @@ Every developer is a creator of worlds — but we reduce that work to flat lists
 
 RepoNova maps real GitHub data into a custom 3D physics engine, transforming your profile into a navigable cosmic expanse powered by WebGL. It's designed to make the abstract beauty of software contributions **visible, interactive, and awe-inspiring**.
 
+#### ⚠️Disclaimer:
+The Product was ment to be under the name of **GitGalaxy** initially, but later rebranded as **RepoNova** later on. This is the reason why the base folders of the repo are named as *git-galaxy-....*!
+
 ---
 
 ## ✨ Features
