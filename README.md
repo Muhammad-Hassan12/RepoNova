@@ -30,7 +30,7 @@ Every developer is a creator of worlds — but we reduce that work to flat lists
 RepoNova maps real GitHub data into a custom 3D physics engine, transforming your profile into a navigable cosmic expanse powered by WebGL. It's designed to make the abstract beauty of software contributions **visible, interactive, and awe-inspiring**.
 
 #### ⚠️Disclaimer:
-* Since currently the backend is running on 'https://render.com/" (Free Tier), the server will automatically go to sleep if not in use for ~15 min. So Be patient it will take ~30 sec to ~1 min to wakeup! (Be patient 🙂)
+* Since currently the backend is running on "https://render.com/" (Free Tier), the server will automatically go to sleep if not in use for ~15 min. So Be patient it will take ~30 sec to ~1 min to wakeup! (Be patient 🙂)
 * The Product was ment to be under the name of **GitGalaxy** initially, but later rebranded as **RepoNova** later on. This is the reason why the base folders of the repo are named as *git-galaxy-....*!
 
 ---
