@@ -44,7 +44,7 @@ export default function AboutModal() {
                             <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-200 tracking-widest uppercase">
                                 Repo-Nova
                             </h2>
-                            <p className="text-gray-400 text-sm mt-1 font-mono">Cosmic Engine Explorer v2.0</p>
+                            <p className="text-gray-400 text-sm mt-1 font-mono">Cosmic Engine Explorer <span className="text-red-400">Beta</span></p>
                             <p className="text-gray-500 text-xs mt-2 leading-relaxed max-w-sm mx-auto">
                                 Transform any GitHub profile into a stunning 3D galaxy. Repos become stars, commits become asteroid belts, and pull requests become comets.
                             </p>

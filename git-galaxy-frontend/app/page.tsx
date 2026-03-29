@@ -47,7 +47,7 @@ export default function Home() {
                         <h1 className="text-base sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-200 tracking-widest uppercase">
                             Repo-Nova
                         </h1>
-                        <p className="hidden sm:block text-gray-400 text-sm mt-1">Cosmic Engine Explorer v2.0</p>
+                        <p className="hidden sm:block text-gray-400 text-sm mt-1">Cosmic Engine Explorer <span className="text-red-400">Beta</span></p>
                     </div>
                     {/* Mobile Export Button */}
                     <div className="sm:hidden pointer-events-auto">
