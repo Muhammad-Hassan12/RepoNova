@@ -45,7 +45,7 @@ export default function Home() {
                 <div className="pointer-events-auto backdrop-blur-md bg-black/40 border border-white/10 p-1.5 sm:p-4 rounded-xl sm:rounded-2xl shadow-[0_0_20px_rgba(255,136,0,0.15)] w-full sm:w-auto flex justify-between items-center sm:block">
                     <div>
                         <h1 className="text-base sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-200 tracking-widest uppercase">
-                            Git-Galaxy
+                            Astro-Git
                         </h1>
                         <p className="hidden sm:block text-gray-400 text-sm mt-1">Cosmic Engine Explorer v2.0</p>
                     </div>

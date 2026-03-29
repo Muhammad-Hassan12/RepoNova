@@ -1,8 +1,8 @@
 <div align="center">
 
-  <img src="git-galaxy-frontend/public/Favicon.png" alt="GitGalaxy Logo" width="120" />
+  <img src="git-galaxy-frontend/public/Favicon.png" alt="AstroGit Logo" width="120" />
 
-  # 🌌 GitGalaxy
+  # 🌌 AstroGit
 
   **Transform any GitHub profile into a stunning, interactive 3D galaxy.**
 
@@ -17,8 +17,8 @@
   [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 
   <!-- Add your live URL here once ready -->
-  <!-- [🚀 Live Demo](https://gitgalaxy.vercel.app) · -->
-  [📋 Report Bug](https://github.com/Muhammad-Hassan12/GitGalaxy/issues) · [💡 Request Feature](https://github.com/Muhammad-Hassan12/GitGalaxy/issues)
+  <!-- [🚀 Live Demo](https://astrogit.vercel.app) · -->
+  [📋 Report Bug](https://github.com/Muhammad-Hassan12/AstroGit/issues) · [💡 Request Feature](https://github.com/Muhammad-Hassan12/AstroGit/issues)
 
 </div>
 
@@ -28,7 +28,7 @@
 
 Every developer is a creator of worlds — but we reduce that work to flat lists, plain text, and static heatmaps. **What if you could fly through your code?**
 
-GitGalaxy maps real GitHub data into a custom 3D physics engine, transforming your profile into a navigable cosmic expanse powered by WebGL. It's designed to make the abstract beauty of software contributions **visible, interactive, and awe-inspiring**.
+AstroGit maps real GitHub data into a custom 3D physics engine, transforming your profile into a navigable cosmic expanse powered by WebGL. It's designed to make the abstract beauty of software contributions **visible, interactive, and awe-inspiring**.
 
 ---
 
@@ -71,7 +71,7 @@ Capture your galaxy as a high-resolution PNG. The engine temporarily boosts the 
 
 ## 🛠️ Tech Stack
 
-GitGalaxy is a decoupled full-stack application — maximum frontend rendering performance with safe API secret handling on the backend.
+AstroGit is a decoupled full-stack application — maximum frontend rendering performance with safe API secret handling on the backend.
 
 | Layer | Technology | Purpose |
 |---|---|---|
@@ -97,8 +97,8 @@ GitGalaxy is a decoupled full-stack application — maximum frontend rendering p
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Muhammad-Hassan12/GitGalaxy.git
-cd GitGalaxy
+git clone https://github.com/Muhammad-Hassan12/AstroGit.git
+cd AstroGit
 ```
 
 ### 2. Backend Setup (Flask API)
@@ -163,7 +163,7 @@ npm run dev
 
 ## 🚀 Deployment
 
-GitGalaxy is designed for a split deployment:
+AstroGit is designed for a split deployment:
 
 | Component | Recommended Host | Notes |
 |---|---|---|
@@ -177,7 +177,7 @@ GitGalaxy is designed for a split deployment:
 ## 📁 Project Structure
 
 ```
-GitGalaxy/
+AstroGit/
 ├── git-galaxy-backend/
 │   ├── app.py                  # Flask API — routes, GraphQL queries, caching
 │   ├── requirements.txt        # Python dependencies
@@ -241,7 +241,7 @@ GitGalaxy/
 
 ## 🤝 Contributing
 
-Contributions are welcome! If you'd like to improve GitGalaxy:
+Contributions are welcome! If you'd like to improve AstroGit:
 
 1. **Fork** the repository
 2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)

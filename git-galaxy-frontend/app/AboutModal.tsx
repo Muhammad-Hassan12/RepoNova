@@ -27,7 +27,7 @@ export default function AboutModal() {
                 onClick={() => setIsOpen(true)}
                 className="pointer-events-auto backdrop-blur-md bg-black/30 border border-white/10 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full text-gray-500 hover:text-gray-300 text-[10px] sm:text-xs font-mono transition-all hover:bg-white/5 hover:border-white/20"
             >
-                ℹ️ About GitGalaxy
+                ℹ️ About AstroGit
             </button>
 
             {isOpen && (
@@ -42,7 +42,7 @@ export default function AboutModal() {
                         {/* Header */}
                         <div className="p-6 border-b border-white/10 text-center">
                             <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-200 tracking-widest uppercase">
-                                Git-Galaxy
+                                Astro-Git
                             </h2>
                             <p className="text-gray-400 text-sm mt-1 font-mono">Cosmic Engine Explorer v2.0</p>
                             <p className="text-gray-500 text-xs mt-2 leading-relaxed max-w-sm mx-auto">
@@ -162,7 +162,7 @@ export default function AboutModal() {
                         {/* Footer */}
                         <div className="p-4 border-t border-white/10 flex justify-between items-center">
                             <a
-                                href="https://github.com/Muhammad-Hassan12/GitGalaxy"
+                                href="https://github.com/Muhammad-Hassan12/AstroGit"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-gray-600 hover:text-gray-400 text-xs font-mono transition-colors"
