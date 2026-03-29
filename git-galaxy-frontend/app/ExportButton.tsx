@@ -38,11 +38,11 @@ export default function ExportButton({ username }: ExportButtonProps) {
                     ctx.textAlign = "right";
                     ctx.textBaseline = "bottom";
                     const padding = exportCanvas.height * 0.03;
-                    ctx.fillText("Astro-Git Explorer", exportCanvas.width - padding, exportCanvas.height - padding - exportCanvas.height * 0.03);
+                    ctx.fillText("Repo-Nova Explorer", exportCanvas.width - padding, exportCanvas.height - padding - exportCanvas.height * 0.03);
 
                     ctx.fillStyle = "rgba(255, 136, 0, 0.8)";
                     ctx.font = `${Math.max(16, exportCanvas.height * 0.015)}px monospace`;
-                    ctx.fillText("github.com/AstroGit", exportCanvas.width - padding, exportCanvas.height - padding);
+                    ctx.fillText("github.com/RepoNova", exportCanvas.width - padding, exportCanvas.height - padding);
 
                     // Add username if provided
                     if (username) {
@@ -56,7 +56,7 @@ export default function ExportButton({ username }: ExportButtonProps) {
 
                 const dataUrl = exportCanvas.toDataURL("image/png", 1.0);
                 const link = document.createElement("a");
-                link.download = `astrogit-${username || 'capture'}-${Date.now()}.png`;
+                link.download = `reponova-${username || 'capture'}-${Date.now()}.png`;
                 link.href = dataUrl;
                 link.click();
 

@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AstroGit — Visualize Your GitHub Universe",
+  title: "RepoNova — Visualize Your GitHub Universe",
   description: "Transform any GitHub profile into a stunning 3D galaxy. Repos become stars, commits become asteroid belts, and pull requests become comets.",
   icons: {
     icon: "/Favicon.png",
