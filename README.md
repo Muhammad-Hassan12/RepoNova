@@ -17,8 +17,7 @@
   [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 
   <!-- Add your live URL here once ready -->
-  <!-- [🚀 Live Demo](https://reponova.vercel.app) · -->
-  [📋 Report Bug](https://github.com/Muhammad-Hassan12/RepoNova/issues) · [💡 Request Feature](https://github.com/Muhammad-Hassan12/RepoNova/issues)
+  [🚀 Live Demo](https://reponova-opal.vercel.app/) · [📋 Report Bug](https://github.com/Muhammad-Hassan12/RepoNova/issues) · [💡 Request Feature](https://github.com/Muhammad-Hassan12/RepoNova/issues)
 
 </div>
 
