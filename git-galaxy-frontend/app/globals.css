@@ -45,4 +45,27 @@ body {
     animation: fadeIn 0.3s ease-out forwards;
 }
 
+/* ===== Mobile Viewport Height Fix =====
+   On actual mobile browsers, 100vh includes area behind the address bar
+   and bottom navigation, causing bottom-positioned elements to be clipped.
+   100dvh (dynamic viewport height) adjusts for the visible viewport. */
+
+/* Mobile-safe full height: uses dvh with vh fallback */
+.h-screen-safe {
+    height: 100vh; /* fallback */
+    height: 100dvh;
+}
+
+/* On mobile only: override Tailwind's h-screen to use dvh */
+@media (max-width: 639px) {
+    .h-screen {
+        height: 100vh !important; /* fallback for older mobile browsers */
+        height: 100dvh !important;
+    }
+
+    /* Ensure bottom-positioned elements account for safe area (notch/gesture bar) */
+    .bottom-safe-area {
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+}
 

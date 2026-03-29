@@ -86,7 +86,7 @@ export default function Home() {
             <UserProfileCard username={activeUsername} />
 
             {/* Bottom Floating Buttons */}
-            <div className="absolute bottom-2 sm:bottom-6 left-0 right-0 z-10 flex items-center justify-center gap-1.5 sm:gap-3 pointer-events-none">
+            <div className="absolute bottom-4 sm:bottom-6 left-0 right-0 z-10 flex items-center justify-center gap-1.5 sm:gap-3 pointer-events-none bottom-safe-area">
                 <LegendModal />
                 <AboutModal />
             </div>
