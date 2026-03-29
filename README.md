@@ -17,8 +17,7 @@
   [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 
   <!-- Add your live URL here once ready -->
-  <!-- [🚀 Live Demo](https://reponova.vercel.app) · -->
-  [📋 Report Bug](https://github.com/Muhammad-Hassan12/RepoNova/issues) · [💡 Request Feature](https://github.com/Muhammad-Hassan12/RepoNova/issues)
+  [🚀 Live Demo](https://reponova-opal.vercel.app/) · [📋 Report Bug](https://github.com/Muhammad-Hassan12/RepoNova/issues) · [💡 Request Feature](https://github.com/Muhammad-Hassan12/RepoNova/issues)
 
 </div>
 
@@ -29,6 +28,9 @@
 Every developer is a creator of worlds — but we reduce that work to flat lists, plain text, and static heatmaps. **What if you could fly through your code?**
 
 RepoNova maps real GitHub data into a custom 3D physics engine, transforming your profile into a navigable cosmic expanse powered by WebGL. It's designed to make the abstract beauty of software contributions **visible, interactive, and awe-inspiring**.
+
+#### ⚠️Disclaimer:
+The Product was ment to be under the name of **GitGalaxy** initially, but later rebranded as **RepoNova** later on. This is the reason why the base folders of the repo are named as *git-galaxy-....*!
 
 ---
 
